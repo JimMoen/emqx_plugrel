@@ -181,7 +181,10 @@ validate_avsc(F) ->
     Name = <<"TryDecodeDefaultAvro">>,
     dbg:tracer(),
     dbg:p(all, c),
-    dbg:tpl(avro_json_decoder, cx),
+    dbg:tpl(avro_json_decoder, decode_value, cx),
+    dbg:tpl(avro_json_decoder, decode_json, cx),
+    dbg:tpl(avro_json_decoder, parse, cx),
+    dbg:tpl(avro_json_decoder, parse_union, cx),
     try
         begin
             {ok, HoconMap} = hocon:load(?plugin_hocon_file),
