@@ -5,6 +5,7 @@
 -export([init/1, do/1, format_error/1]).
 
 -define(METADATA_VSN, <<"0.2.0">>).
+-define(PLUG_REL_TAG, <<"0.5.1">>).
 
 -define(plugin_readme_file, "README.md").
 -define(plugin_avsc_file, "priv/config_schema.avsc").
@@ -34,6 +35,9 @@ init(State) ->
 do(State) ->
     Opts = rebar_state:opts(State),
     Relx = rebar_opts:get(Opts, relx),
+    io:format("Opts: ~p~n", [Opts]),
+    io:format("Relx: ~p~n", [Relx]),
+    io:format("Plugins: ~p~n", [rebar_opts:get(Opts, plugins)]),
     %% call rlx_config:to_state/1 to parse the vsns in format of 'git' or '{cmd, Cmd}'
     {ok, RelxState} = rlx_config:to_state(Relx),
     case maps:values(rlx_state:configured_releases(RelxState)) of
